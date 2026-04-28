@@ -1,0 +1,51 @@
+/**
+ * Cloudflare Workers + Static Assets configuration.
+ *
+ * Cloudflare consolidated their Pages product into the Workers
+ * platform during 2025. Static sites now deploy as Workers with the
+ * "assets" binding, which serves the static build output directly.
+ * Functionally identical to the old Pages experience for our use case
+ * (free tier, auto-SSL, custom domain support, instant rollbacks).
+ *
+ * After Cloudflare's "Create application" flow connects to this repo,
+ * each push to main triggers:
+ *   1. `npm run build`        — Astro generates the static site to ./dist
+ *   2. `npx wrangler deploy`  — wrangler reads this file, uploads ./dist
+ *                                as the Worker's static assets
+ *
+ * Local preview (optional, requires `npm install -g wrangler`):
+ *   wrangler dev
+ *
+ * Production deploy from CLI (optional, normally handled by Cloudflare's
+ * git integration; useful for emergency hotfixes from a dev box):
+ *   wrangler deploy
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "perspectiv-website",
+  "compatibility_date": "2026-04-27",
+
+  // Static assets configuration — points at Astro's build output and
+  // tells the Worker to serve files directly from there. No Worker
+  // script needed; we're just serving HTML/CSS/JS, not running code.
+  "assets": {
+    "directory": "./dist",
+
+    // When a request matches no file in dist/, return /404.html with
+    // a 404 status. Astro generates a 404 page automatically when
+    // src/pages/404.astro exists. We don't have one yet — Cloudflare
+    // will use a default 404 page until we add one.
+    //
+    // Other valid values:
+    //   "single-page-application"  — for SPA routing (always serve index.html)
+    //   "none"                     — return Cloudflare default 404 page
+    "not_found_handling": "404-page"
+  },
+
+  // Observability — enables the basic logging/analytics view in the
+  // Cloudflare dashboard. Free at the volumes a marketing site
+  // generates.
+  "observability": {
+    "enabled": true
+  }
+}
