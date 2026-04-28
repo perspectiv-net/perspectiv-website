@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<BaseLayout
+  title="Why Perspectiv"
+  description="Why Perspectiv exists, who we built it for, and how it's different from legacy enterprise monitoring suites."
+>
+  <section class="bg-gradient-to-b from-slate-50 to-white py-20 sm:py-24">
+    <div class="container-prose text-center">
+      <p class="section-eyebrow">Why Perspectiv</p>
+      <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        Built for IT teams that want less, sooner
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
+        Perspectiv exists because the gap between "enterprise monitoring suite"
+        and "I just want to know if my network is up" got too wide. We built
+        the tool we wanted as operators.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="container-prose space-y-12">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          Who this is for
+        </h2>
+        <p class="mt-3 text-base leading-relaxed text-slate-600">
+          IT teams of 1–20 operators monitoring 50–2,000 devices across one
+          or a few sites. Network engineers who'd rather spend an afternoon
+          installing a tool than a quarter negotiating module licenses. Ops
+          teams burned by per-node billing that turned a small network
+          expansion into a budget meeting.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          What we don't do
+        </h2>
+        <ul class="mt-3 space-y-2 text-base leading-relaxed text-slate-600">
+          <li>
+            <span class="font-semibold text-slate-900">No tier gating on features.</span>{' '}
+            Every capability ships in every plan. Tier difference is device
+            cap, not unlocked modules.
+          </li>
+          <li>
+            <span class="font-semibold text-slate-900">No per-node billing.</span>{' '}
+            Add devices, ICMP-monitor your whole subnet, run discovery sweeps
+            — your bill doesn't move.
+          </li>
+          <li>
+            <span class="font-semibold text-slate-900">No mandatory cloud dependency.</span>{' '}
+            Self-hosted by default. Your traffic flow data, your config
+            backups, your SNMP creds — all stay on your hardware.
+          </li>
+          <li>
+            <span class="font-semibold text-slate-900">No multi-day install.</span>{' '}
+            Docker Compose, two commands, you're at the bootstrap admin
+            page in 10 minutes. No Windows server, no SQL Server license.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          What we do well
+        </h2>
+        <p class="mt-3 text-base leading-relaxed text-slate-600">
+          The standard SMB-network-engineer feature set, done thoroughly:
+          SNMP polling with vendor-specific templates, NetFlow analysis,
+          syslog and trap ingestion, configuration backup with diff history,
+          IPAM, topology mapping via LLDP/CDP, agent-based server monitoring
+          for Windows and Linux, multi-channel alerting with proper
+          deduplication, custom dashboards, scheduled reports, full audit
+          log, SSO integration, role-based access control. Built into one
+          installable platform, not stitched together from add-on modules.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          Where we're going
+        </h2>
+        <p class="mt-3 text-base leading-relaxed text-slate-600">
+          We ship roughly every other week. Charter customers (anyone in
+          our pre-launch design partner program — see{' '}
+          <a href="/charter">Charter</a>) get a direct line to influence
+          the roadmap. The current focus areas are: deeper anomaly detection
+          on time-series data, expanded vendor templates for SD-WAN and
+          firewall platforms, and a SaaS-tier multi-tenant offering for MSPs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

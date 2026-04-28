@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<BaseLayout
+  title="Download"
+  description="Install Perspectiv on a Linux host in about 10 minutes. Docker Compose bundle, free 30-day trial, no credit card required."
+>
+  <section class="bg-gradient-to-b from-slate-50 to-white py-20 sm:py-24">
+    <div class="container-prose text-center">
+      <p class="section-eyebrow">Download Perspectiv</p>
+      <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        Up and running in 10 minutes
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
+        Self-hosted on your own Linux box. The 30-day trial activates on first
+        boot — no credit card, no sales call, no email confirmation step.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-12">
+    <div class="container-prose space-y-10">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          Before you start
+        </h2>
+        <ul class="mt-3 space-y-2 text-base text-slate-600">
+          <li>A Linux host with Docker + Docker Compose (Ubuntu 22.04+ or similar)</li>
+          <li>16 GB RAM, 50 GB disk minimum</li>
+          <li>Network access from the host to whatever devices you want to monitor</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          Install
+        </h2>
+        <p class="mt-3 text-base text-slate-600">
+          Three commands and you're at the bootstrap admin page:
+        </p>
+        <pre class="mt-4"><code>{`git clone https://github.com/perspectiv-net/perspectiv.git
+cd perspectiv
+cp .env.example .env
+$EDITOR .env       # set POSTGRES_PASSWORD, LETSENCRYPT_EMAIL, PERSPECTIV_HOSTNAME
+docker compose up -d`}</code></pre>
+        <p class="mt-4 text-sm text-slate-500">
+          Watch the logs with <code>docker compose logs -f perspectiv</code>.
+          When you see <code>[100%] Ready.</code> browse to your hostname,
+          create your first admin user, and you're in.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-brand-200 bg-brand-50 p-6">
+        <h3 class="text-lg font-semibold text-slate-900">
+          Want the paste-friendly walkthrough?
+        </h3>
+        <p class="mt-2 text-sm text-slate-700">
+          The full step-by-step quickstart includes the Ubuntu Docker
+          install path, the workstation hosts-file step (so your browser
+          can reach <code>perspectiv.local</code>), and lab-vs-production
+          guidance for TLS.
+        </p>
+        <div class="mt-4">
+          <a
+            href="https://github.com/perspectiv-net/perspectiv/blob/main/docs/quickstart.md"
+            class="btn-primary text-sm"
+          >
+            Open the full quickstart on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          What you get during the trial
+        </h2>
+        <ul class="mt-3 space-y-2 text-base text-slate-600">
+          <li><span class="font-semibold text-slate-900">30 days</span> from first boot</li>
+          <li><span class="font-semibold text-slate-900">10 fully-monitored devices</span> — SNMP, WMI, agent</li>
+          <li><span class="font-semibold text-slate-900">Unlimited ICMP-only devices</span></li>
+          <li><span class="font-semibold text-slate-900">Every feature unlocked</span> — no module gating</li>
+        </ul>
+        <p class="mt-4 text-base text-slate-600">
+          Need a longer evaluation or higher device count for a real pilot? See
+          the <a href="/charter">Charter Program</a> — design partners get
+          extended trials (typically 90 days, 250+ devices) plus complimentary
+          professional services.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          Migrating from another tool?
+        </h2>
+        <p class="mt-3 text-base text-slate-600">
+          Charter customers migrating from SolarWinds, PRTG, Zabbix, or
+          LibreNMS get free migration assistance from us — let us know your
+          source platform when you reach out at{' '}
+          <a href="mailto:sales@perspectiv.net">sales@perspectiv.net</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Ready to give it a real test?"
+    body="Spin up a VM, follow the quickstart, see how far you get in 10 minutes."
+  />
+</BaseLayout>

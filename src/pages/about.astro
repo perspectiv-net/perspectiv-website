@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Perspectiv LLC builds self-hosted network monitoring software for SMB and mid-market IT teams. Get in touch for sales, support, partnerships, or migration help."
+>
+  <section class="bg-gradient-to-b from-slate-50 to-white py-20 sm:py-24">
+    <div class="container-prose text-center">
+      <p class="section-eyebrow">About Perspectiv</p>
+      <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        Network monitoring built by operators, for operators
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
+        Perspectiv LLC is a software company that builds self-hosted network
+        monitoring software for small and mid-market IT teams. We started
+        building Perspectiv because the gap between "free open-source tool"
+        and "enterprise monitoring suite" got too wide for the teams in
+        between.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="container-prose space-y-10">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          Get in touch
+        </h2>
+        <p class="mt-3 text-base text-slate-600">
+          We're a small team, so emails go to humans. Most replies happen
+          same-day during US business hours, next-day otherwise.
+        </p>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <a
+            href="mailto:sales@perspectiv.net"
+            class="rounded-xl border border-slate-200 p-6 no-underline transition-shadow hover:shadow-md"
+          >
+            <h3 class="text-base font-semibold text-slate-900">Sales</h3>
+            <p class="mt-1 text-sm text-brand-700">sales@perspectiv.net</p>
+            <p class="mt-2 text-sm text-slate-600">
+              Pricing questions, extended trials, license keys, custom contracts,
+              SolarWinds migration assistance.
+            </p>
+          </a>
+
+          <a
+            href="mailto:support@perspectiv.net"
+            class="rounded-xl border border-slate-200 p-6 no-underline transition-shadow hover:shadow-md"
+          >
+            <h3 class="text-base font-semibold text-slate-900">Support</h3>
+            <p class="mt-1 text-sm text-brand-700">support@perspectiv.net</p>
+            <p class="mt-2 text-sm text-slate-600">
+              Existing customers — installation help, configuration questions,
+              bug reports, feature requests.
+            </p>
+          </a>
+
+          <a
+            href="mailto:partners@perspectiv.net"
+            class="rounded-xl border border-slate-200 p-6 no-underline transition-shadow hover:shadow-md"
+          >
+            <h3 class="text-base font-semibold text-slate-900">Charter Program</h3>
+            <p class="mt-1 text-sm text-brand-700">partners@perspectiv.net</p>
+            <p class="mt-2 text-sm text-slate-600">
+              Apply to become a design partner — see the{' '}
+              <span class="text-brand-700">Charter Program</span> page for details.
+            </p>
+          </a>
+
+          <a
+            href="mailto:security@perspectiv.net"
+            class="rounded-xl border border-slate-200 p-6 no-underline transition-shadow hover:shadow-md"
+          >
+            <h3 class="text-base font-semibold text-slate-900">Security</h3>
+            <p class="mt-1 text-sm text-brand-700">security@perspectiv.net</p>
+            <p class="mt-2 text-sm text-slate-600">
+              Responsible disclosure of security vulnerabilities. We
+              acknowledge within 48 hours.
+            </p>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          Open-source surface
+        </h2>
+        <p class="mt-3 text-base text-slate-600">
+          The Perspectiv deploy bundle and public documentation are
+          open-source under the Apache 2.0 license. The product itself is
+          proprietary commercial software, distributed as a Docker image
+          and licensed via per-instance keys.
+        </p>
+        <ul class="mt-3 space-y-1 text-sm text-slate-600">
+          <li>
+            <span class="font-semibold text-slate-900">Public repo:</span>{' '}
+            <a href="https://github.com/perspectiv-net/perspectiv">github.com/perspectiv-net/perspectiv</a>
+          </li>
+          <li>
+            <span class="font-semibold text-slate-900">Container image:</span>{' '}
+            <code>ghcr.io/perspectiv-net/perspectiv</code>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

@@ -1,0 +1,113 @@
+---
+// Top navigation bar — appears on every page via BaseLayout.
+// Active route gets a subtle indicator. Mobile collapses to hamburger
+// (toggled with a small client-side script at the bottom of the file).
+
+const { pathname } = Astro.url;
+
+const links = [
+  { href: '/why',      label: 'Why Perspectiv' },
+  { href: '/pricing',  label: 'Pricing' },
+  { href: '/download', label: 'Download' },
+  { href: '/charter',  label: 'Charter Program' },
+  { href: '/about',    label: 'About' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return pathname === '/';
+  return pathname.startsWith(href);
+}
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
+  <nav class="container-wide flex h-16 items-center justify-between">
+    <!-- Logo / wordmark -->
+    <a
+      href="/"
+      class="flex items-center gap-2 font-bold text-slate-900 no-underline hover:text-slate-900"
+    >
+      <span
+        class="inline-block h-7 w-7 rounded bg-brand-600"
+        aria-hidden="true"
+      ></span>
+      <span class="text-xl tracking-tight">Perspectiv</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden items-center gap-1 md:flex">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class={`rounded-md px-3 py-2 text-sm font-medium no-underline transition-colors ${
+                isActive(link.href)
+                  ? 'bg-slate-100 text-slate-900'
+                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+              }`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Trial CTA — desktop only -->
+    <div class="hidden md:block">
+      <a href="/download" class="btn-primary text-sm py-2 px-4">
+        Start free trial
+      </a>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button
+      type="button"
+      id="mobile-menu-toggle"
+      class="rounded-md p-2 text-slate-700 hover:bg-slate-100 md:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu (collapsed by default) -->
+  <div id="mobile-menu" class="hidden border-t border-slate-200 md:hidden">
+    <ul class="container-wide py-3">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class={`block rounded-md px-3 py-2 text-base font-medium no-underline ${
+                isActive(link.href)
+                  ? 'bg-slate-100 text-slate-900'
+                  : 'text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="mt-2 border-t border-slate-200 pt-3">
+        <a href="/download" class="btn-primary w-full justify-center text-sm">
+          Start free trial
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu   = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+</script>

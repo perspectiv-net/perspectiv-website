@@ -1,0 +1,188 @@
+---
+// CTA is intentionally not imported here — the closing "How to apply"
+// section at the bottom of this page IS the CTA, with its own custom
+// layout (numbered steps). Importing the generic CTA component would
+// be redundant.
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Charter Program"
+  description="Perspectiv's design partner program. 6 months free, 50% off Year 1, free SolarWinds migration. For SMB / mid-market IT teams running 50–500 devices."
+>
+  <section class="bg-gradient-to-b from-slate-50 to-white py-20 sm:py-24">
+    <div class="container-prose text-center">
+      <p class="section-eyebrow">Charter Program</p>
+      <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        Help shape v1.0. Get $16,000 in software and services.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
+        We're looking for 3–5 design partners to run Perspectiv for 60 days
+        and help us shape what becomes v1.0. In exchange you get 6 months
+        free, 50% off Year 1, free migration assistance, and a direct line
+        to engineering.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── What you get ──────────────────────────────────────────────── -->
+  <section class="bg-white py-16">
+    <div class="container-prose">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+        What you get
+      </h2>
+
+      <ul class="mt-6 space-y-4">
+        <li class="flex gap-4 rounded-xl border border-slate-200 p-4">
+          <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900">6 months of Perspectiv Business tier free</p>
+            <p class="text-sm text-slate-600">Normally $1,299/mo · $7,800 value</p>
+          </div>
+        </li>
+        <li class="flex gap-4 rounded-xl border border-slate-200 p-4">
+          <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900">50% off Year 1 when you convert</p>
+            <p class="text-sm text-slate-600">$7,800/year, 50% of standard $15,588 annual</p>
+          </div>
+        </li>
+        <li class="flex gap-4 rounded-xl border border-slate-200 p-4">
+          <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900">Free SolarWinds migration assistance</p>
+            <p class="text-sm text-slate-600">$7,500 value — we port your inventory, alert rules, and dashboards</p>
+          </div>
+        </li>
+        <li class="flex gap-4 rounded-xl border border-slate-200 p-4">
+          <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900">Free Quick Start onboarding</p>
+            <p class="text-sm text-slate-600">$999 value — 1-hour walkthrough, agent rollout, dashboard buildout</p>
+          </div>
+        </li>
+        <li class="flex gap-4 rounded-xl border border-slate-200 p-4">
+          <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900">Direct line to engineering</p>
+            <p class="text-sm text-slate-600">Slack, email, or voice. Most issues fixed same-day or next-day.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="mt-6 rounded-xl bg-brand-50 p-6 text-center">
+        <p class="text-base font-semibold text-slate-900">
+          Total package value: ~$16,000+ in software + services for a 60-day pilot.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What we ask ─────────────────────────────────────────────────── -->
+  <section class="bg-slate-50 py-16">
+    <div class="container-prose">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+        What we ask
+      </h2>
+      <ul class="mt-6 space-y-3 text-base text-slate-600">
+        <li>
+          <span class="font-semibold text-slate-900">Run Perspectiv alongside your current tool for 60 days</span>{' '}
+          on at least one site or business unit. We're not asking you to
+          migrate production — we're asking you to validate ours against
+          ground truth.
+        </li>
+        <li>
+          <span class="font-semibold text-slate-900">~30 minutes a week</span>{' '}
+          for a Slack/email check-in or a 15-minute call when something
+          interesting happens.
+        </li>
+        <li>
+          <span class="font-semibold text-slate-900">Honest feedback</span>{' '}
+          — what works, what's confusing, what's missing, what's broken.
+          We want the unfiltered version.
+        </li>
+        <li>
+          <span class="font-semibold text-slate-900">Two reference calls</span>{' '}
+          during pre-launch. We prep questions; you decide what to share.
+        </li>
+      </ul>
+      <p class="mt-6 text-sm text-slate-600">
+        That's it. No marketing commitment, no required public quote, no
+        exclusivity.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Who's a fit ─────────────────────────────────────────────────── -->
+  <section class="bg-white py-16">
+    <div class="container-prose">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+        Who's a fit
+      </h2>
+
+      <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-6">
+          <h3 class="text-base font-semibold text-emerald-900">Likely a fit</h3>
+          <ul class="mt-3 space-y-2 text-sm text-emerald-900">
+            <li>IT teams running 50–500 fully-monitored devices across 1–3 sites</li>
+            <li>Currently on SolarWinds, LogicMonitor, Auvik, NinjaOne, or PRTG</li>
+            <li>At least one IT person comfortable running an install script</li>
+            <li>Linux or Docker exposure (Perspectiv is a Linux container)</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+          <h3 class="text-base font-semibold text-slate-900">Not a fit yet</h3>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600">
+            <li>Enterprises with &gt;5,000 nodes (talk to us in v1.0 when distributed pollers ship)</li>
+            <li>Teams with no Linux/Docker exposure</li>
+            <li>Compliance-heavy regulated industries requiring FedRAMP today</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How to apply ─────────────────────────────────────────────────── -->
+  <section class="bg-brand-950 py-20 text-white">
+    <div class="container-prose">
+      <h2 class="text-3xl font-bold tracking-tight text-white">
+        How to apply
+      </h2>
+      <p class="mt-4 text-lg text-brand-100">
+        Send a one-paragraph email to{' '}
+        <a href="mailto:partners@perspectiv.net?subject=Design%20Partner%20Application" class="text-accent-400 underline">
+          partners@perspectiv.net
+        </a>
+        {' '}with:
+      </p>
+      <ol class="mt-6 list-decimal space-y-3 pl-6 text-base text-brand-100 marker:text-accent-400 marker:font-bold">
+        <li><span class="font-semibold text-white">Who you are</span> — name, role, company (or just "IT director, 200-person manufacturing co" if anonymity helps)</li>
+        <li><span class="font-semibold text-white">What you currently use</span> for monitoring — and what specifically frustrates you about it</li>
+        <li><span class="font-semibold text-white">Roughly how many devices</span> you'd put under Perspectiv during the 60-day pilot</li>
+        <li><span class="font-semibold text-white">One thing you wish your current tool did</span> that it doesn't</li>
+      </ol>
+      <p class="mt-6 text-base text-brand-100">
+        We respond within 48 hours. If it's a fit, we'll schedule a 30-minute
+        call to walk through the install path and pick a start date.
+      </p>
+      <div class="mt-8">
+        <a
+          href="mailto:partners@perspectiv.net?subject=Design%20Partner%20Application"
+          class="inline-flex items-center gap-2 rounded-lg bg-accent-500 px-5 py-3 text-base font-semibold text-slate-900 no-underline transition-colors hover:bg-accent-400"
+        >
+          Email partners@perspectiv.net
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

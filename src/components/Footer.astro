@@ -1,0 +1,82 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-200 bg-slate-50">
+  <div class="container-wide py-12">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+      <!-- Product -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-900">
+          Product
+        </h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/why" class="text-slate-600 no-underline hover:text-slate-900">Why Perspectiv</a></li>
+          <li><a href="/pricing" class="text-slate-600 no-underline hover:text-slate-900">Pricing</a></li>
+          <li><a href="/download" class="text-slate-600 no-underline hover:text-slate-900">Download</a></li>
+          <li><a href="/charter" class="text-slate-600 no-underline hover:text-slate-900">Charter Program</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-900">
+          Resources
+        </h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>
+            <a
+              href="https://github.com/perspectiv-net/perspectiv"
+              class="text-slate-600 no-underline hover:text-slate-900"
+            >
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/perspectiv-net/perspectiv/blob/main/docs/quickstart.md"
+              class="text-slate-600 no-underline hover:text-slate-900"
+            >
+              Quickstart
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/perspectiv-net/perspectiv/blob/main/docs/DEPLOY.md"
+              class="text-slate-600 no-underline hover:text-slate-900"
+            >
+              Deployment guide
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-900">
+          Company
+        </h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/about" class="text-slate-600 no-underline hover:text-slate-900">About</a></li>
+          <li><a href="mailto:sales@perspectiv.net" class="text-slate-600 no-underline hover:text-slate-900">Sales</a></li>
+          <li><a href="mailto:support@perspectiv.net" class="text-slate-600 no-underline hover:text-slate-900">Support</a></li>
+        </ul>
+      </div>
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-block h-7 w-7 rounded bg-brand-600" aria-hidden="true"></span>
+          <span class="text-xl font-bold tracking-tight text-slate-900">Perspectiv</span>
+        </div>
+        <p class="mt-4 text-sm text-slate-600">
+          Network monitoring without the SolarWinds tax.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-slate-200 pt-8 text-sm text-slate-500">
+      <p>&copy; {year} Perspectiv LLC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

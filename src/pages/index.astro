@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<BaseLayout
+  title="Perspectiv"
+  description="Self-hosted network monitoring for SMB and mid-market IT teams. SNMP, NetFlow, syslog, and Windows/Linux agents. Per-tier pricing, never per-node. Install in 10 minutes."
+>
+  <Hero />
+
+  <!-- ── Capabilities section ───────────────────────────────────────── -->
+  <section class="bg-white py-20 sm:py-24">
+    <div class="container-wide">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="section-eyebrow">Everything in one platform</p>
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          One install, every layer of your network covered
+        </h2>
+        <p class="mt-4 text-lg text-slate-600">
+          No add-on modules. No "you need the Enterprise tier for that." Every
+          capability ships in every plan.
+        </p>
+      </div>
+
+      <div class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 p-6">
+          <h3 class="text-lg font-semibold text-slate-900">SNMP polling</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            v1, v2c, and v3 (auth + priv). Auto-discovery of interfaces,
+            environment sensors, ARP, routing, storage. Vendor templates for
+            Cisco, Juniper, Arista, HP, Fortinet, and more.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 p-6">
+          <h3 class="text-lg font-semibold text-slate-900">NetFlow + syslog</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            v5, v9, IPFIX. Top talkers, application breakdown, conversation
+            history. Syslog receiver with regex-based event extraction and
+            forwarding.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 p-6">
+          <h3 class="text-lg font-semibold text-slate-900">Server agents</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            Windows + Linux + macOS. psutil-based, no inbound firewall holes,
+            auto-registers itself on first heartbeat.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 p-6">
+          <h3 class="text-lg font-semibold text-slate-900">Service checks</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            HTTP/HTTPS, TCP, DNS, ICMP, traceroute (Netpath). Track external
+            dependencies the same way you track your own infrastructure.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 p-6">
+          <h3 class="text-lg font-semibold text-slate-900">Configuration backup</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            Daily SSH/SCP/TFTP snapshots with diff history and one-click restore.
+            Pre/post-change auditing without spinning up a separate vendor.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 p-6">
+          <h3 class="text-lg font-semibold text-slate-900">Topology + IPAM</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            LLDP/CDP-driven topology auto-discovery. Built-in IPAM with subnet
+            utilization, conflict detection, and forecasting.
+          </p>
+        </div>
+      </div>
+
+      <div class="mx-auto mt-12 max-w-2xl text-center text-sm text-slate-500">
+        <a href="/why" class="font-medium text-brand-700 hover:text-brand-900">
+          See the full feature list →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing teaser ─────────────────────────────────────────────── -->
+  <section class="bg-slate-50 py-20 sm:py-24">
+    <div class="container-wide">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="section-eyebrow">Simple, predictable pricing</p>
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          Pay for the size of your environment, not every device on it
+        </h2>
+        <p class="mt-4 text-lg text-slate-600">
+          Five tiers, flat annual pricing. ICMP-only devices are always
+          unlimited and never count toward your fully-monitored cap.
+        </p>
+        <div class="mt-8">
+          <a href="/pricing" class="btn-primary">
+            See the pricing tiers
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

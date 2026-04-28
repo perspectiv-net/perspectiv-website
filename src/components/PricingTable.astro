@@ -1,0 +1,83 @@
+---
+// Pricing tier table — used on /pricing.
+// Tier data centralized here so updates land in one place.
+
+interface Tier {
+  name: string;
+  devices: string;
+  monthly: string;
+  annual: string;
+  highlight?: boolean;
+}
+
+const tiers: Tier[] = [
+  { name: 'Starter',      devices: '100',    monthly: '$349',   annual: '$297/mo billed annually'  },
+  { name: 'Professional', devices: '250',    monthly: '$749',   annual: '$637/mo billed annually', highlight: true },
+  { name: 'Business',     devices: '500',    monthly: '$1,299', annual: '$1,104/mo billed annually' },
+  { name: 'Enterprise',   devices: '1,000',  monthly: '$2,299', annual: '$1,954/mo billed annually' },
+  { name: 'Scale',        devices: '1,000+', monthly: 'custom', annual: 'multi-site, multi-tenant pricing' },
+];
+---
+
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
+  {
+    tiers.map((tier) => (
+      <div
+        class={`relative rounded-2xl border p-6 ${
+          tier.highlight
+            ? 'border-brand-600 bg-brand-50 shadow-lg ring-1 ring-brand-600'
+            : 'border-slate-200 bg-white'
+        }`}
+      >
+        {tier.highlight && (
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+            Most popular
+          </span>
+        )}
+
+        <h3 class="text-lg font-semibold text-slate-900">{tier.name}</h3>
+
+        <div class="mt-4">
+          <p class="text-3xl font-bold tracking-tight text-slate-900">{tier.monthly}</p>
+          <p class="mt-1 text-xs text-slate-500">{tier.annual}</p>
+        </div>
+
+        <div class="mt-6 border-t border-slate-200 pt-4">
+          <p class="text-sm text-slate-700">
+            <span class="font-semibold">{tier.devices}</span>{' '}
+            fully-monitored devices
+          </p>
+          <p class="mt-1 text-sm text-slate-500">
+            Unlimited ICMP-only
+          </p>
+        </div>
+
+        <div class="mt-6">
+          {tier.name === 'Scale' ? (
+            <a
+              href="mailto:sales@perspectiv.net?subject=Scale%20tier%20inquiry"
+              class={`block rounded-lg px-4 py-2 text-center text-sm font-semibold no-underline transition-colors ${
+                tier.highlight
+                  ? 'bg-brand-600 text-white hover:bg-brand-700'
+                  : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              Contact sales
+            </a>
+          ) : (
+            <a
+              href="/download"
+              class={`block rounded-lg px-4 py-2 text-center text-sm font-semibold no-underline transition-colors ${
+                tier.highlight
+                  ? 'bg-brand-600 text-white hover:bg-brand-700'
+                  : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              Start free trial
+            </a>
+          )}
+        </div>
+      </div>
+    ))
+  }
+</div>

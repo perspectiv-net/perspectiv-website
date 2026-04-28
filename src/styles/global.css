@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base typography + element resets ──────────────────────────────── */
+@layer base {
+  html {
+    @apply text-slate-800 antialiased;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-white;
+  }
+
+  /* Headings — slightly tighter tracking for display sizes */
+  h1, h2, h3, h4 {
+    @apply font-semibold tracking-tight text-slate-900;
+  }
+
+  /* Inline links — subtle by default, brand color on hover */
+  a {
+    @apply text-brand-700 underline-offset-4 transition-colors hover:text-brand-900;
+  }
+
+  /* Inline code */
+  code {
+    @apply rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[0.875em] text-slate-800;
+  }
+
+  /* Code blocks */
+  pre {
+    @apply overflow-x-auto rounded-lg bg-slate-900 p-4 text-sm leading-relaxed text-slate-100;
+  }
+
+  pre code {
+    @apply bg-transparent p-0 text-slate-100;
+  }
+}
+
+/* ── Reusable component classes ─────────────────────────────────────── */
+@layer components {
+  .container-prose {
+    @apply mx-auto max-w-3xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Primary CTA button — used in Hero, pricing, charter pages */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-3 text-base font-semibold text-white no-underline transition-colors hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600;
+  }
+
+  /* Secondary CTA — outlined, lower visual weight */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-3 text-base font-semibold text-slate-700 no-underline transition-colors hover:border-slate-400 hover:bg-slate-50;
+  }
+
+  /* Section heading pair (eyebrow + title) */
+  .section-eyebrow {
+    @apply mb-2 text-sm font-semibold uppercase tracking-wider text-brand-700;
+  }
+}

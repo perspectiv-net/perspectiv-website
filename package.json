@@ -1,0 +1,21 @@
+{
+  "name": "perspectiv-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Source for perspectiv.net — marketing site, pricing page, docs portal.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.18",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.4",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3"
+  }
+}
