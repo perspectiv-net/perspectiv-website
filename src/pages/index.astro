@@ -84,6 +84,82 @@ import CTA from '../components/CTA.astro';
     </div>
   </section>
 
+  <!-- ── Product showcase ───────────────────────────────────────────── -->
+  <section class="bg-slate-900 py-20 sm:py-24">
+    <div class="container-wide">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-accent-400">
+          Built to be looked at
+        </p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Real screenshots from a real deployment
+        </h2>
+        <p class="mt-4 text-lg text-slate-300">
+          No mockups, no Lorem Ipsum. This is what the dashboard, device
+          views, and traffic analysis look like in production.
+        </p>
+      </div>
+
+      <div class="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-3">
+        <!-- Device manager — wide -->
+        <figure class="group lg:col-span-2 overflow-hidden rounded-xl border border-slate-700 bg-slate-800 transition-transform hover:-translate-y-1">
+          <img
+            src="/images/feature-device-manager.png"
+            alt="Perspectiv device inventory page showing a list of monitored devices with status, vendor, IP, and uptime columns."
+            class="block h-auto w-full"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="border-t border-slate-700 px-5 py-3 text-sm text-slate-300">
+            <span class="font-semibold text-white">Device inventory</span> — every monitored device, vendor-detected, with status at a glance
+          </figcaption>
+        </figure>
+
+        <!-- Overview — portrait -->
+        <figure class="group overflow-hidden rounded-xl border border-slate-700 bg-slate-800 transition-transform hover:-translate-y-1">
+          <img
+            src="/images/feature-overview.png"
+            alt="Perspectiv main overview dashboard showing summary tiles for devices, alerts, and infrastructure health."
+            class="block h-auto w-full"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="border-t border-slate-700 px-5 py-3 text-sm text-slate-300">
+            <span class="font-semibold text-white">Overview dashboard</span> — your fleet's health on one page
+          </figcaption>
+        </figure>
+
+        <!-- NetFlow — wide -->
+        <figure class="group overflow-hidden rounded-xl border border-slate-700 bg-slate-800 transition-transform hover:-translate-y-1">
+          <img
+            src="/images/feature-netflow.png"
+            alt="Perspectiv NetFlow analysis page showing top talkers, conversation breakdown, and application identification."
+            class="block h-auto w-full"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="border-t border-slate-700 px-5 py-3 text-sm text-slate-300">
+            <span class="font-semibold text-white">NetFlow analysis</span> — top talkers, conversations, applications
+          </figcaption>
+        </figure>
+
+        <!-- Device detail — wide, spans 2 cols -->
+        <figure class="group lg:col-span-2 overflow-hidden rounded-xl border border-slate-700 bg-slate-800 transition-transform hover:-translate-y-1">
+          <img
+            src="/images/feature-device-details.png"
+            alt="Perspectiv device detail page showing per-interface metrics, environment sensors, ARP table, and routing information for a single device."
+            class="block h-auto w-full"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="border-t border-slate-700 px-5 py-3 text-sm text-slate-300">
+            <span class="font-semibold text-white">Device detail</span> — interfaces, environment, ARP, routes, all in one place
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Pricing teaser ─────────────────────────────────────────────── -->
   <section class="bg-slate-50 py-20 sm:py-24">
     <div class="container-wide">

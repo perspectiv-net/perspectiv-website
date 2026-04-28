@@ -2,6 +2,9 @@
 // Home page hero. Positioning: "Network monitoring without the
 // SolarWinds tax." Direct, comparative, punchy. Backed by three
 // supporting points (no per-node, self-hosted, 10-min install).
+//
+// Layout: text on the left, product screenshot on the right.
+// Stacks vertically on mobile (text first, screenshot below).
 ---
 
 <section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">
@@ -12,51 +15,78 @@
     aria-hidden="true"
   ></div>
 
-  <div class="container-wide pt-20 pb-24 sm:pt-28 sm:pb-32">
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="section-eyebrow">For SMB and mid-market IT teams</p>
+  <div class="container-wide pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-24">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+      <!-- ── Text column ─────────────────────────────────────────── -->
+      <div class="text-center lg:col-span-6 lg:text-left">
+        <p class="section-eyebrow">For SMB and mid-market IT teams</p>
 
-      <h1 class="text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-        Network monitoring without the
-        <span class="relative whitespace-nowrap text-brand-600">
-          SolarWinds tax
-          <svg
-            class="absolute -bottom-2 left-0 h-3 w-full text-accent-400"
-            viewBox="0 0 200 12"
-            fill="none"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path d="M2 9 Q50 2 100 6 T198 4" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-          </svg>
-        </span>
-        <span class="text-slate-900">.</span>
-      </h1>
+        <h1 class="text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Network monitoring without the
+          <span class="relative whitespace-nowrap text-brand-600">
+            SolarWinds tax
+            <svg
+              class="absolute -bottom-2 left-0 h-3 w-full text-accent-400"
+              viewBox="0 0 200 12"
+              fill="none"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path d="M2 9 Q50 2 100 6 T198 4" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span class="text-slate-900">.</span>
+        </h1>
 
-      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-        Self-hosted. Per-tier pricing — never per-node. SNMP, NetFlow, syslog,
-        and Windows/Linux agents in one platform. Install in 10 minutes on
-        a single Linux host.
-      </p>
+        <p class="mt-6 text-lg leading-relaxed text-slate-600 sm:text-xl lg:max-w-xl">
+          Self-hosted. Per-tier pricing — never per-node. SNMP, NetFlow,
+          syslog, and Windows/Linux agents in one platform. Install in
+          10 minutes on a single Linux host.
+        </p>
 
-      <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-        <a href="/download" class="btn-primary">
-          Start 30-day free trial
-          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
-        <a href="/pricing" class="btn-secondary">
-          See pricing
-        </a>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-start">
+          <a href="/download" class="btn-primary">
+            Start 30-day free trial
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="/pricing" class="btn-secondary">
+            See pricing
+          </a>
+        </div>
+
+        <p class="mt-4 text-sm text-slate-500">
+          No credit card required. 10 fully-monitored devices + unlimited ICMP-only.
+        </p>
       </div>
 
-      <p class="mt-6 text-sm text-slate-500">
-        No credit card required. 10 fully-monitored devices + unlimited ICMP-only.
-      </p>
+      <!-- ── Screenshot column ───────────────────────────────────── -->
+      <div class="lg:col-span-6">
+        <!-- Window-chrome wrapper to make the raw screenshot feel
+             "in context" (like it's running in a browser/app). -->
+        <div class="relative mx-auto max-w-2xl rounded-xl border border-slate-200 bg-slate-50 p-1.5 shadow-2xl ring-1 ring-slate-900/5 lg:max-w-none">
+          <!-- Faux window title bar -->
+          <div class="flex items-center gap-1.5 border-b border-slate-200 bg-slate-100 px-3 py-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-red-400" aria-hidden="true"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-yellow-400" aria-hidden="true"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-green-400" aria-hidden="true"></span>
+            <span class="ml-3 truncate text-xs text-slate-500">perspectiv.local — Interface throughput</span>
+          </div>
+
+          <!-- The screenshot -->
+          <img
+            src="/images/feature-interface-throughput.png"
+            alt="Perspectiv dashboard showing live interface throughput graphs for a network device — ingress and egress bytes plotted over time, with traffic spikes and patterns clearly visible."
+            class="block h-auto w-full"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
     </div>
 
-    <!-- Trust strip — three quick-scan benefits -->
+    <!-- ── Trust strip — three quick-scan benefits ──────────────── -->
     <div class="mx-auto mt-20 grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-3">
       <div class="text-center">
         <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
