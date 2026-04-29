@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Hand-maintained sitemap for perspectiv.net.
+
+  Why hand-maintained instead of @astrojs/sitemap auto-generation:
+  the version we tried at scaffold time crashed the build with
+  "Cannot read properties of undefined (reading 'reduce')". For a
+  6-page marketing site, the maintenance overhead of editing this
+  file when we add a page is trivial vs the dependency risk.
+
+  When you add a new page:
+    1. Add a <url> block below
+    2. Set <priority> based on importance: home=1.0, key pages=0.7-0.9,
+       supporting pages=0.5
+    3. Set <changefreq> based on update cadence: weekly for pages
+       tied to releases (Download), monthly for pricing/marketing,
+       yearly for static About/Contact
+    4. Update the lastmod date to today
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home -->
+  <url>
+    <loc>https://perspectiv.net/</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Pricing — high priority, the page prospects look for first -->
+  <url>
+    <loc>https://perspectiv.net/pricing</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Download — updates with each release, weekly cadence reasonable -->
+  <url>
+    <loc>https://perspectiv.net/download</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Why Perspectiv — positioning page -->
+  <url>
+    <loc>https://perspectiv.net/why</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Charter / Design Partner Program — recruiting target -->
+  <url>
+    <loc>https://perspectiv.net/charter</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- About + Contact — supporting page, infrequent updates -->
+  <url>
+    <loc>https://perspectiv.net/about</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,13 @@
+# Perspectiv — robots.txt
+#
+# Allow all well-behaved crawlers (Google, Bing, DuckDuckGo, etc.) to index
+# every public page. There's nothing secret on perspectiv.net — the whole
+# site is marketing surface meant to be discoverable.
+#
+# Sitemap reference helps search engines find every page even if internal
+# linking is sparse on a particular crawl.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://perspectiv.net/sitemap.xml
