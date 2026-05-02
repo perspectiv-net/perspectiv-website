@@ -7,7 +7,7 @@
  *
  * Configuration (set via `wrangler secret put` for secrets, [vars] in wrangler.jsonc for the rest):
  *   RESEND_API_KEY      (secret) — Resend API key, e.g. re_xxxxx
- *   CONTACT_FROM_EMAIL  (var)    — verified sender. Default: "Perspectiv <noreply@perspectiv.net>"
+ *   CONTACT_FROM_EMAIL  (var)    — verified sender. Default: "Perspectiv Sales <sales@perspectiv.net>"
  *   CONTACT_TO_EMAIL    (var)    — destination inbox. Default: "sales@perspectiv.net"
  *
  * The form posts URL-encoded data (no JS dependency) and we redirect on
@@ -111,7 +111,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
       <tr><td style="padding:4px 12px 4px 0;color:#64748b">Topic</td><td>${esc(topicLabel)}</td></tr>
       <tr><td style="padding:4px 12px 4px 0;color:#64748b">Name</td><td>${esc(name)}</td></tr>
       <tr><td style="padding:4px 12px 4px 0;color:#64748b">Company</td><td>${esc(company)}</td></tr>
-      <tr><td style="padding:4px 12px 4px 0;color:#64748b">Email</td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
+      <tr><td style="padding:4px 12px 4px 0;color:#64748b">Email</td><td>${esc(email)}</td></tr>
       ${phone   ? `<tr><td style="padding:4px 12px 4px 0;color:#64748b">Phone</td><td>${esc(phone)}</td></tr>`     : ''}
       ${devices ? `<tr><td style="padding:4px 12px 4px 0;color:#64748b">Devices</td><td>${esc(devices)}</td></tr>` : ''}
     </table>
@@ -121,7 +121,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
 
   // Send via Resend. Reply-To set to the customer so a Gmail "Reply" goes to them.
   const resendBody = {
-    from:     env.CONTACT_FROM_EMAIL ?? 'Perspectiv <noreply@perspectiv.net>',
+    from:     env.CONTACT_FROM_EMAIL ?? 'Perspectiv Sales <sales@perspectiv.net>',
     to:       [env.CONTACT_TO_EMAIL  ?? 'sales@perspectiv.net'],
     reply_to: email,
     subject,

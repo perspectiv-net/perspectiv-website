@@ -53,7 +53,7 @@
   // Non-secret environment variables. The Resend API key is set
   // separately as a secret with `wrangler secret put RESEND_API_KEY`.
   "vars": {
-    "CONTACT_FROM_EMAIL": "Perspectiv <noreply@perspectiv.net>",
+    "CONTACT_FROM_EMAIL": "Perspectiv Sales <sales@perspectiv.net>",
     "CONTACT_TO_EMAIL":   "sales@perspectiv.net"
   },
 

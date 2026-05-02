@@ -69,7 +69,7 @@ The "Talk to sales" buttons across the site link to `/contact`, which posts to a
    Paste the key when prompted. The secret is encrypted at rest in Cloudflare.
 
 4. **(Optional) Override the from/to addresses.** Defaults are set in `wrangler.jsonc` under `vars`:
-   - `CONTACT_FROM_EMAIL` — the verified Resend sender. Default: `Perspectiv <noreply@perspectiv.net>`.
+   - `CONTACT_FROM_EMAIL` — the verified Resend sender. Default: `Perspectiv Sales <sales@perspectiv.net>`.
    - `CONTACT_TO_EMAIL` — the destination inbox. Default: `sales@perspectiv.net`.
 
 ### Local end-to-end test
