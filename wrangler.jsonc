@@ -25,11 +25,19 @@
   "name": "perspectiv-website",
   "compatibility_date": "2026-04-27",
 
-  // Static assets configuration — points at Astro's build output and
-  // tells the Worker to serve files directly from there. No Worker
-  // script needed; we're just serving HTML/CSS/JS, not running code.
+  // Worker entrypoint — handles dynamic routes (POST /api/contact) and
+  // falls through to static assets via env.ASSETS.fetch() for everything
+  // else. Wrangler 4 transpiles the .ts file natively.
+  "main": "worker/index.ts",
+
+  // Static assets configuration — Astro's build output. The Worker
+  // accesses these via the ASSETS binding when it falls through.
   "assets": {
     "directory": "./dist",
+
+    // Bind static assets as `env.ASSETS` inside the Worker. Without this
+    // binding, the Worker has no way to serve the static site.
+    "binding": "ASSETS",
 
     // When a request matches no file in dist/, return /404.html with
     // a 404 status. Astro generates a 404 page automatically when
@@ -40,6 +48,13 @@
     //   "single-page-application"  — for SPA routing (always serve index.html)
     //   "none"                     — return Cloudflare default 404 page
     "not_found_handling": "404-page"
+  },
+
+  // Non-secret environment variables. The Resend API key is set
+  // separately as a secret with `wrangler secret put RESEND_API_KEY`.
+  "vars": {
+    "CONTACT_FROM_EMAIL": "Perspectiv <noreply@perspectiv.net>",
+    "CONTACT_TO_EMAIL":   "sales@perspectiv.net"
   },
 
   // Observability — enables the basic logging/analytics view in the

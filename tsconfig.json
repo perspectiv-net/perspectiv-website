@@ -7,5 +7,6 @@
       "@layouts/*": ["src/layouts/*"],
       "@styles/*": ["src/styles/*"]
     }
-  }
+  },
+  "exclude": ["worker", "dist"]
 }
