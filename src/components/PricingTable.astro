@@ -5,22 +5,28 @@
 interface Tier {
   name: string;
   devices: string;
-  monthly: string;
-  annual: string;
+  oneYear: string;
+  twoYear: string;
   highlight?: boolean;
 }
 
-// Annual values match what's configured in Stripe Products & Prices and
-// what's listed on docs/pricing.md (15% off the monthly × 12 calculation).
-// Keeping the display as the absolute annual total (rather than the
-// monthly-equivalent) so customers see the same dollar figure on the
-// website, on the docs pricing page, and on the Stripe Checkout page.
+// Pricing is one-time payment per term (NOT auto-renewing subscription).
+// Customer pays once for 1 or 2 years; license expires at end of term;
+// they re-purchase to continue.
+//
+// Discount math:
+//   1-year: 15% off the monthly rate × 12  (e.g. $399 × 12 × 0.85 = $4,070)
+//   2-year: 25% off the monthly rate × 24  (e.g. $399 × 24 × 0.75 = $7,182)
+//
+// Keep these in sync with the Stripe Products & Prices and docs/pricing.md.
+// Each tier needs two One-off Stripe Prices: one with term_days=365 in
+// metadata for the 1-year tier, one with term_days=730 for the 2-year tier.
 const tiers: Tier[] = [
-  { name: 'Starter',      devices: '100',    monthly: '$399',   annual: '$4,070/yr (save 15%)'  },
-  { name: 'Professional', devices: '250',    monthly: '$899',   annual: '$9,170/yr (save 15%)', highlight: true },
-  { name: 'Business',     devices: '500',    monthly: '$1,599', annual: '$16,310/yr (save 15%)' },
-  { name: 'Enterprise',   devices: '1,000',  monthly: '$2,799', annual: '$28,550/yr (save 15%)' },
-  { name: 'Scale',        devices: '1,000+', monthly: 'custom', annual: 'multi-site, multi-tenant pricing' },
+  { name: 'Starter',      devices: '100',    oneYear: '$4,070',  twoYear: '$7,182 / 2-yr'  },
+  { name: 'Professional', devices: '250',    oneYear: '$9,170',  twoYear: '$16,182 / 2-yr', highlight: true },
+  { name: 'Business',     devices: '500',    oneYear: '$16,310', twoYear: '$28,782 / 2-yr' },
+  { name: 'Enterprise',   devices: '1,000',  oneYear: '$28,550', twoYear: '$50,382 / 2-yr' },
+  { name: 'Scale',        devices: '1,000+', oneYear: 'custom',  twoYear: 'multi-site, multi-tenant'  },
 ];
 ---
 
@@ -43,8 +49,17 @@ const tiers: Tier[] = [
         <h3 class="text-lg font-semibold text-slate-900">{tier.name}</h3>
 
         <div class="mt-4">
-          <p class="text-3xl font-bold tracking-tight text-slate-900">{tier.monthly}</p>
-          <p class="mt-1 text-xs text-slate-500">{tier.annual}</p>
+          <p class="text-3xl font-bold tracking-tight text-slate-900">{tier.oneYear}</p>
+          <p class="mt-1 text-xs text-slate-500">
+            {tier.name === 'Scale' ? '' : '1-year license'}
+          </p>
+        </div>
+
+        <div class="mt-3 rounded-md bg-slate-50 px-3 py-2">
+          <p class="text-sm font-semibold text-slate-900">{tier.twoYear}</p>
+          <p class="text-xs text-slate-500">
+            {tier.name === 'Scale' ? '' : '2-year license · save 25%'}
+          </p>
         </div>
 
         <div class="mt-6 border-t border-slate-200 pt-4">

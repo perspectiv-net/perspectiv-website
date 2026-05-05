@@ -327,9 +327,14 @@ async function handleCheckoutSession(request: Request, env: Env): Promise<Respon
     }, 400);
   }
 
-  // Build the URL-encoded body Stripe's API expects
+  // Build the URL-encoded body Stripe's API expects.
+  //
+  // mode=payment (one-off charge), NOT mode=subscription. Perspectiv's
+  // pricing model is one-time payment for a fixed-term license — no
+  // auto-renewal. Customer pays once, license expires at end of term,
+  // they actively re-purchase if they want to continue.
   const params = new URLSearchParams();
-  params.append('mode', 'subscription');
+  params.append('mode', 'payment');
   params.append('line_items[0][price]', priceId);
   params.append('line_items[0][quantity]', '1');
   params.append('success_url', 'https://perspectiv.net/checkout/success?session_id={CHECKOUT_SESSION_ID}');
@@ -338,10 +343,13 @@ async function handleCheckoutSession(request: Request, env: Env): Promise<Respon
   if (customerEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
     params.append('customer_email', customerEmail);
   }
-  // Allow customers to enter a promotion code at checkout (annual discount, etc.)
+  // Allow promo codes (one-off discounts, charter pricing, etc.)
   params.append('allow_promotion_codes', 'true');
   // Collect billing address — useful for tax/invoicing later
   params.append('billing_address_collection', 'required');
+  // For one-off payments, default invoice_creation off — but we want a
+  // record we can reference later. Customer gets a Stripe-hosted invoice.
+  params.append('invoice_creation[enabled]', 'true');
 
   try {
     const res = await fetch('https://api.stripe.com/v1/checkout/sessions', {
