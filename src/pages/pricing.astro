@@ -172,4 +172,195 @@ import CTA from '../components/CTA.astro';
   </section>
 
   <CTA />
+
+  <!-- ── Buy modal — shown when a Buy button on a tier card is clicked ─── -->
+  <div
+    id="buy-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="buy-modal-title"
+  >
+    <div class="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+      <div class="flex items-start justify-between">
+        <div>
+          <h2 id="buy-modal-title" class="text-xl font-bold text-slate-900">
+            Buy <span id="buy-modal-tier">Starter</span>
+          </h2>
+          <p id="buy-modal-summary" class="mt-1 text-sm text-slate-600">
+            1-year license &middot; <span id="buy-modal-price">$4,070</span>
+          </p>
+        </div>
+        <button
+          type="button"
+          id="buy-modal-close"
+          class="rounded-md p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+          aria-label="Close"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="buy-modal-form" class="mt-5 space-y-4">
+        <div>
+          <label for="buy-instance-id" class="block text-sm font-medium text-slate-700">
+            Instance ID <span class="text-rose-600">*</span>
+          </label>
+          <input
+            type="text"
+            id="buy-instance-id"
+            name="instance_id"
+            required
+            placeholder="e.g. 47d4af9b-38e7-40fb-a3c2-532b37fc9d25"
+            pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            class="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm font-mono shadow-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600"
+          />
+          <p class="mt-1 text-xs text-slate-500">
+            Find this in your Perspectiv install at <strong>Settings &rarr; License &rarr; Instance ID</strong>.
+            Don't have one yet? <a href="/download" class="font-medium">Install Perspectiv free</a> first to get your Instance ID.
+          </p>
+        </div>
+
+        <div>
+          <label for="buy-email" class="block text-sm font-medium text-slate-700">
+            Email <span class="text-rose-600">*</span>
+          </label>
+          <input
+            type="email"
+            id="buy-email"
+            name="customer_email"
+            required
+            autocomplete="email"
+            placeholder="you@company.com"
+            class="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600"
+          />
+          <p class="mt-1 text-xs text-slate-500">
+            We'll send your license key here after payment.
+          </p>
+        </div>
+
+        <div id="buy-modal-error" class="hidden rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800"></div>
+
+        <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-end">
+          <button
+            type="button"
+            id="buy-modal-cancel"
+            class="btn-secondary justify-center text-sm"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            id="buy-modal-submit"
+            class="btn-primary justify-center text-sm"
+          >
+            Continue to payment
+          </button>
+        </div>
+      </form>
+
+      <p class="mt-4 text-center text-xs text-slate-500">
+        Single payment. No auto-renewal. Secure checkout via Stripe.
+      </p>
+    </div>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const modal      = document.getElementById('buy-modal');
+      const modalTier  = document.getElementById('buy-modal-tier');
+      const modalPrice = document.getElementById('buy-modal-price');
+      const modalSum   = document.getElementById('buy-modal-summary');
+      const form       = document.getElementById('buy-modal-form');
+      const errorBox   = document.getElementById('buy-modal-error');
+      const submitBtn  = document.getElementById('buy-modal-submit');
+      const closeBtn   = document.getElementById('buy-modal-close');
+      const cancelBtn  = document.getElementById('buy-modal-cancel');
+      const idField    = document.getElementById('buy-instance-id');
+      const emailField = document.getElementById('buy-email');
+
+      let currentPriceId = '';
+
+      function openModal(tier, term, priceId, priceDisplay) {
+        currentPriceId = priceId;
+        modalTier.textContent  = tier;
+        modalPrice.textContent = priceDisplay.split(' / ')[0];
+        modalSum.firstChild.textContent =
+          (term === '1y' ? '1-year license · ' : '2-year license · save 25% · ');
+        errorBox.classList.add('hidden');
+        errorBox.textContent = '';
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        // Focus the first input so keyboard users land in the right place
+        setTimeout(() => idField.focus(), 50);
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        form.reset();
+      }
+
+      // Wire up every Buy button on the page
+      document.querySelectorAll('.buy-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const tier         = btn.dataset.tier;
+          const term         = btn.dataset.term;
+          const priceId      = btn.dataset.priceId;
+          const priceDisplay = btn.dataset.priceDisplay;
+          if (!priceId || !priceId.startsWith('price_')) {
+            // Disabled state — placeholder Price ID, button shouldn't actually work
+            return;
+          }
+          openModal(tier, term, priceId, priceDisplay);
+        });
+      });
+
+      closeBtn?.addEventListener('click', closeModal);
+      cancelBtn?.addEventListener('click', closeModal);
+      // Click outside the inner panel to close
+      modal?.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+      // ESC key to close
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+      });
+
+      // Form submit — POST to /api/checkout-session, redirect to Stripe URL
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorBox.classList.add('hidden');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Working…';
+
+        const instanceId = idField.value.trim();
+        const email      = emailField.value.trim();
+        try {
+          const res = await fetch('/api/checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              price_id:       currentPriceId,
+              instance_id:    instanceId,
+              customer_email: email,
+            }),
+          });
+          if (!res.ok) {
+            const data = await res.json().catch(() => ({}));
+            throw new Error(data.error || 'Could not create checkout session.');
+          }
+          const data = await res.json();
+          if (!data.url) throw new Error('Checkout session did not return a URL.');
+          // Hand off the browser to Stripe
+          window.location.href = data.url;
+        } catch (err) {
+          errorBox.textContent = err.message || 'Something went wrong. Try again.';
+          errorBox.classList.remove('hidden');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Continue to payment';
+        }
+      });
+    })();
+  </script>
 </BaseLayout>
