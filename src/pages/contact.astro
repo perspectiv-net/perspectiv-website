@@ -5,6 +5,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 // can't be read at build time. The inline script at the bottom of the
 // page swaps visibility and pre-selects the topic at runtime instead.
 
+// Cloudflare Turnstile site key — paste the value from
+// Cloudflare Dashboard → Turnstile → your site → Site Key.
+// This is a PUBLIC value (it's embedded in the HTML); the matching
+// secret key goes in the Worker as a wrangler secret.
+//
+// To set up Turnstile (one-time):
+//   1. Cloudflare Dashboard → Turnstile → Add site
+//   2. Domain: perspectiv.net (and any preview domains you want)
+//   3. Widget Mode: Managed (default — invisible in 99% of cases)
+//   4. Copy the Site Key here, copy the Secret Key for the Worker
+const TURNSTILE_SITE_KEY = '0x4AAAAAADJEV-auhEk1thsN';
+
 const topicOptions: Array<{ value: string; label: string }> = [
   { value: 'general', label: 'General inquiry' },
   { value: 'scale',   label: 'Scale tier pricing (1,000+ devices, multi-site)' },
@@ -196,6 +208,12 @@ const deviceRanges = [
           ></textarea>
         </div>
 
+        <!-- Cloudflare Turnstile — invisible bot challenge. The "managed"
+             widget mode renders a small notice and runs in the background
+             for legitimate users (no checkbox, no images). The Worker
+             validates the token server-side before accepting the form. -->
+        <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="light"></div>
+
         <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
           <p class="text-xs text-slate-500">
             We use your details only to reply. No marketing list, no third-party sharing.
@@ -205,6 +223,9 @@ const deviceRanges = [
           </button>
         </div>
       </form>
+
+      <!-- Turnstile script — loaded async, attaches to the .cf-turnstile div above. -->
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
 
       <p class="mt-6 text-center text-sm text-slate-500">
         Prefer email? Reach us at{' '}

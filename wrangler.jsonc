@@ -57,6 +57,34 @@
     "CONTACT_TO_EMAIL":   "sales@perspectiv.net"
   },
 
+  // Rate-limiting binding for the contact form. Limits submissions per
+  // source IP to deter spam volume. The Worker references this as
+  // env.CONTACT_RATE_LIMITER and falls through gracefully if the binding
+  // isn't present (e.g., during local `wrangler dev` without rate-limit
+  // emulation), so existing deploys won't break.
+  //
+  // namespace_id should be a unique number across all rate-limit
+  // bindings on the account; "1001" is fine here since this is the only
+  // limiter on perspectiv-website. If you add more, increment.
+  //
+  // Tuning notes: 3 requests per 60s per IP. Real users almost never
+  // submit the same form 3+ times in a minute (one fill takes ~30s+ of
+  // typing). Bots driving volume hit it immediately. Adjust period/
+  // limit if false positives show up in `wrangler tail`.
+  "unsafe": {
+    "bindings": [
+      {
+        "name": "CONTACT_RATE_LIMITER",
+        "type": "ratelimit",
+        "namespace_id": "1001",
+        "simple": {
+          "limit": 3,
+          "period": 60
+        }
+      }
+    ]
+  },
+
   // Observability — enables the basic logging/analytics view in the
   // Cloudflare dashboard. Free at the volumes a marketing site
   // generates.
