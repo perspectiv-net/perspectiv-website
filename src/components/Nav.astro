@@ -21,21 +21,16 @@ function isActive(href: string): boolean {
 
 <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
   <nav class="container-wide flex h-16 items-center justify-between">
-    <!-- Logo / wordmark — the asset includes the wordmark, so no
-         separate text span. Height-constrained at h-8 (32px) to fit
-         the navbar's h-16 row with comfortable padding above and below. -->
+    <!-- Logo / wordmark -->
     <a
       href="/"
-      class="flex items-center no-underline"
-      aria-label="Perspectiv home"
+      class="flex items-center gap-2 font-bold text-slate-900 no-underline hover:text-slate-900"
     >
-      <img
-        src="/logo.png"
-        alt="Perspectiv"
-        class="h-8 w-auto"
-        width="320"
-        height="160"
-      />
+      <span
+        class="inline-block h-7 w-7 rounded bg-brand-600"
+        aria-hidden="true"
+      ></span>
+      <span class="text-xl tracking-tight">Perspectiv</span>
     </a>
 
     <!-- Desktop nav -->
