@@ -34,11 +34,11 @@ const pageTitle = title === 'Perspectiv' ? title : `${title} — Perspectiv`;
     <meta name="description" content={description} />
 
     <link rel="canonical" href={canonical} />
-    <!-- Favicon — points at the new Perspectiv mark. Old favicon.svg
-         (Astro's default placeholder) still exists in /public but isn't
-         referenced; safe to delete from disk later. -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <!-- Favicon — using the original SVG placeholder. The full network-
+         graph mark is too busy at 16×16 to read in browser tabs; keeping
+         the simpler, scalable SVG looks cleaner there. The full logo
+         shows in the nav header where there's room for the detail. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
