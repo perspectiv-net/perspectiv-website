@@ -614,6 +614,12 @@ function renderLicenseEmail(
 ): string {
   return `<!doctype html>
 <html><body style="font-family:system-ui,-apple-system,sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#0f172a">
+  <p style="margin:0 0 24px;text-align:left">
+    <img src="https://perspectiv.net/logo.png"
+         alt="Perspectiv"
+         width="180"
+         style="display:block;height:auto;max-width:180px" />
+  </p>
   <h2 style="margin:0 0 16px">Welcome to Perspectiv ${esc(tierLabel)}</h2>
   <p style="line-height:1.6">Thanks for subscribing. Your license key is below — paste it into <strong>Settings &rarr; License &rarr; Activate</strong> in your Perspectiv install.</p>
   <pre style="background:#f1f5f9;padding:16px;border-radius:8px;word-break:break-all;font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.5;margin:16px 0">${esc(licenseKey)}</pre>

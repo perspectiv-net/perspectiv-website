@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description: string;
-  /** Override the default OG image. Defaults to /og-default.png */
+  /** Override the default OG image. Defaults to /og-image.png */
   ogImage?: string;
   /** Set canonical URL — defaults to current page. */
   canonical?: string;
@@ -15,7 +15,7 @@ interface Props {
 const {
   title,
   description,
-  ogImage = '/og-default.png',
+  ogImage = '/og-image.png',
   canonical = Astro.url.href,
 } = Astro.props;
 
@@ -34,7 +34,11 @@ const pageTitle = title === 'Perspectiv' ? title : `${title} — Perspectiv`;
     <meta name="description" content={description} />
 
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicon — points at the new Perspectiv mark. Old favicon.svg
+         (Astro's default placeholder) still exists in /public but isn't
+         referenced; safe to delete from disk later. -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
