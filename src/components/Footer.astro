@@ -58,8 +58,15 @@ const year = new Date().getFullYear();
         </h3>
         <ul class="mt-4 space-y-2 text-sm">
           <li><a href="/about" class="text-slate-600 no-underline hover:text-slate-900">About</a></li>
-          <li><a href="mailto:sales@perspectiv.net" class="text-slate-600 no-underline hover:text-slate-900">Sales</a></li>
-          <li><a href="mailto:support@perspectiv.net" class="text-slate-600 no-underline hover:text-slate-900">Support</a></li>
+          {/* /contact is the funnel page (Turnstile-protected form,
+             routed through Cloudflare Worker → Resend). Linking it
+             from the footer (a) un-orphans the page so Google
+             actually crawls and indexes it, and (b) routes prospects
+             through the form instead of straight to mailto: which
+             bypasses the spam controls and the topic-tagged routing. */}
+          <li><a href="/contact" class="text-slate-600 no-underline hover:text-slate-900">Contact</a></li>
+          <li><a href="/contact?topic=sales" class="text-slate-600 no-underline hover:text-slate-900">Sales</a></li>
+          <li><a href="/contact?topic=support" class="text-slate-600 no-underline hover:text-slate-900">Support</a></li>
         </ul>
       </div>
 
