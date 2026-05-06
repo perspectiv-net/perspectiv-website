@@ -2,11 +2,41 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PricingTable from '../components/PricingTable.astro';
 import CTA from '../components/CTA.astro';
+
+// Product schema — gives Google enough structure to potentially
+// surface pricing in SERPs (rich snippet eligibility) and feeds
+// merchant-listing-style results. AggregateOffer is the right shape
+// here because we have multiple tiers; if you ever want individual
+// tier rich results, split this into one Product per tier.
+// Reference:
+// https://developers.google.com/search/docs/appearance/structured-data/product
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Perspectiv Network Monitoring',
+  description:
+    'Self-hosted network monitoring software with tier-based annual pricing. Every plan includes SNMP, NetFlow, syslog, agents, NetPath, alerting, and reporting.',
+  brand: {
+    '@type': 'Brand',
+    name: 'Perspectiv',
+  },
+  category: 'Network Monitoring Software',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'USD',
+    lowPrice: '399',
+    highPrice: '2499',
+    offerCount: '4',
+    availability: 'https://schema.org/InStock',
+    url: 'https://perspectiv.net/pricing',
+  },
+};
 ---
 
 <BaseLayout
   title="Pricing"
   description="Flat tier-based annual pricing for Perspectiv network monitoring. From $399/mo for 100 devices, never per-node. ICMP-only devices always unlimited."
+  structuredData={productSchema}
 >
   <!-- ── Header ─────────────────────────────────────────────────────── -->
   <section class="bg-gradient-to-b from-slate-50 to-white py-20 sm:py-24">

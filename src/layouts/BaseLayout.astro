@@ -10,6 +10,16 @@ interface Props {
   ogImage?: string;
   /** Set canonical URL — defaults to current page. */
   canonical?: string;
+  /** Emit `<meta name="robots" content="noindex,follow">` for this
+      page. Use on transactional landing pages (post-checkout
+      thank-you, etc.) that shouldn't show up in SERPs. */
+  noindex?: boolean;
+  /** Optional page-specific JSON-LD structured data blocks. Each
+      object is emitted as its own <script type="application/ld+json">
+      tag. Use for SoftwareApplication on home, Product/Offer on
+      pricing, FAQPage on FAQ pages, etc. The base Organization
+      schema is emitted on every page automatically. */
+  structuredData?: Record<string, any> | Record<string, any>[];
 }
 
 const {
@@ -17,10 +27,37 @@ const {
   description,
   ogImage = '/og-image.png',
   canonical = Astro.url.href,
+  noindex = false,
+  structuredData,
 } = Astro.props;
 
 // Title format: "{Page} — Perspectiv" except on the homepage
 const pageTitle = title === 'Perspectiv' ? title : `${title} — Perspectiv`;
+
+// Organization schema — emitted on every page so Google has a stable
+// view of the brand entity. Helps surface logo + site name in SERPs
+// (knowledge-panel-lite) and is a prerequisite for sitelinks.
+// Reference: https://developers.google.com/search/docs/appearance/structured-data/logo
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Perspectiv',
+  url: 'https://perspectiv.net',
+  logo: 'https://perspectiv.net/logo.png',
+  description:
+    'Self-hosted network monitoring for SMB and mid-market IT teams. SNMP, NetFlow, syslog, and Windows/Linux agents in one platform.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    email: 'sales@perspectiv.net',
+    availableLanguage: ['English'],
+  },
+};
+
+// Normalize structuredData to an array for clean iteration
+const extraSchemas = structuredData
+  ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+  : [];
 ---
 
 <!doctype html>
@@ -32,6 +69,8 @@ const pageTitle = title === 'Perspectiv' ? title : `${title} — Perspectiv`;
 
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+
+    {noindex && <meta name="robots" content="noindex,follow" />}
 
     <link rel="canonical" href={canonical} />
     <!-- Favicon — using the original SVG placeholder. The full network-
@@ -61,6 +100,22 @@ const pageTitle = title === 'Perspectiv' ? title : `${title} — Perspectiv`;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
+
+    {/* ── JSON-LD structured data ─────────────────────────────────────
+       Organization schema is emitted on every page so Google has a
+       stable view of the brand entity across the site. Pages can
+       supply additional schemas (SoftwareApplication, Product, FAQ,
+       etc.) via the `structuredData` prop.
+
+       Validate any new schema using:
+         https://search.google.com/test/rich-results
+       And monitor coverage in Search Console under
+       Enhancements → "Merchant listings" / "Logos" / etc.
+       set:html prevents Astro from HTML-escaping the JSON braces. */}
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {extraSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
   </head>
 
   <body class="flex min-h-screen flex-col">

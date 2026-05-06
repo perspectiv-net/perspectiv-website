@@ -22,7 +22,7 @@
   <!-- Home -->
   <url>
     <loc>https://perspectiv.net/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -30,7 +30,7 @@
   <!-- Pricing — high priority, the page prospects look for first -->
   <url>
     <loc>https://perspectiv.net/pricing</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -38,7 +38,7 @@
   <!-- Download — updates with each release, weekly cadence reasonable -->
   <url>
     <loc>https://perspectiv.net/download</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -46,7 +46,7 @@
   <!-- Why Perspectiv — positioning page -->
   <url>
     <loc>https://perspectiv.net/why</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -54,17 +54,29 @@
   <!-- Charter / Design Partner Program — recruiting target -->
   <url>
     <loc>https://perspectiv.net/charter</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- About + Contact — supporting page, infrequent updates -->
+  <!-- About — supporting page, infrequent updates -->
   <url>
     <loc>https://perspectiv.net/about</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <!-- Contact — sales-inquiry funnel page; should be discoverable -->
+  <url>
+    <loc>https://perspectiv.net/contact</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- NOTE: /checkout/success is intentionally NOT in this sitemap.
+       That page is a Stripe-redirect landing page only and is marked
+       noindex via BaseLayout's noindex prop. -->
 
 </urlset>

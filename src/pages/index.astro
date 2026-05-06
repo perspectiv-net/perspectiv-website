@@ -2,11 +2,44 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+
+// SoftwareApplication schema — tells Google this site's primary
+// entity is a piece of network-monitoring software, with pricing,
+// supported OSes, and feature highlights. Eligible for rich results
+// like the "Software" carousel in SERPs and feature snippets.
+// Reference:
+// https://developers.google.com/search/docs/appearance/structured-data/software-app
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Perspectiv',
+  applicationCategory: 'NetworkMonitoringApplication',
+  applicationSubCategory: 'Network Monitoring',
+  operatingSystem: 'Linux, Windows',
+  description:
+    'Self-hosted network monitoring software for SMB and mid-market IT teams. SNMP, NetFlow, syslog, and Windows/Linux agents in one platform. Tier-based annual pricing, never per-node.',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'USD',
+    lowPrice: '399',
+    highPrice: '2499',
+    offerCount: '4',
+  },
+  featureList: [
+    'SNMP polling',
+    'NetFlow analysis',
+    'syslog ingestion',
+    'Windows + Linux agents',
+    'NetPath traceroute',
+    'Alerting and reporting',
+  ],
+};
 ---
 
 <BaseLayout
   title="Perspectiv"
   description="Self-hosted network monitoring for SMB and mid-market IT teams. SNMP, NetFlow, syslog, and Windows/Linux agents. Per-tier pricing, never per-node. Install in 10 minutes."
+  structuredData={softwareSchema}
 >
   <Hero />
 
