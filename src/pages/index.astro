@@ -117,6 +117,107 @@ const softwareSchema = {
     </div>
   </section>
 
+  <!-- ── Privacy / air-gapped section ────────────────────────────────
+       Differentiates Perspectiv vs. cloud-based competitors (Datadog,
+       Auvik, Kentik, ManageEngine OpManager Cloud, etc.) which all
+       phone home with customer telemetry by default. The "fully
+       offline-capable" claim is a hard yes/no — verifiable by the
+       customer themselves with tcpdump — so it's a defensible,
+       marketing-bulletproof differentiator. Add this section here
+       (after capabilities, before screenshots) so a scanning visitor
+       hits it as the second thing after features.
+  ───────────────────────────────────────────────────────────────── -->
+  <section class="bg-gradient-to-br from-slate-50 to-brand-50 py-20 sm:py-24">
+    <div class="container-wide">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="section-eyebrow">Privacy by design</p>
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          Your network data never leaves your network.
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed text-slate-600">
+          Perspectiv runs entirely inside your infrastructure. After
+          you activate your license, the product never contacts our
+          servers — no telemetry, no analytics, no update pings, no
+          heartbeats. Block all outbound traffic from the Perspectiv
+          host and it just keeps working.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600">
+          That's not a marketing promise — it's a verifiable
+          architectural property. Run <code class="rounded bg-slate-200 px-1.5 py-0.5 font-mono text-sm">tcpdump</code>
+          on your Perspectiv host. You won't see a single packet to
+          <code class="rounded bg-slate-200 px-1.5 py-0.5 font-mono text-sm">perspectiv.net</code>
+          after install.
+        </p>
+      </div>
+
+      <div class="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-base font-semibold text-slate-900">
+            Zero telemetry
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            No usage analytics, no error reporting, no anonymous
+            metrics. We don't know how many devices you monitor, what
+            vendors you run, or whether you're online today. We don't
+            ask, and the product doesn't tell us.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-base font-semibold text-slate-900">
+            Offline license validation
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            License keys are cryptographically signed (Ed25519) and
+            validated locally. No periodic check-ins, no online
+            activation servers. Cut your internet during a deployment
+            and Perspectiv keeps running.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-base font-semibold text-slate-900">
+            Air-gapped friendly
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            Built for SCIFs, defense-cleared networks, regulated
+            healthcare, financial trading floors, and any environment
+            with strict outbound-traffic rules. Perspectiv passes every
+            airgap firewall audit because there's nothing for it to
+            phone home about.
+          </p>
+        </div>
+      </div>
+
+      <div class="mx-auto mt-12 max-w-3xl text-center">
+        <p class="text-sm leading-relaxed text-slate-600">
+          Compare this to cloud-based monitoring (Datadog, Auvik,
+          Kentik, the SaaS-tier of every legacy NMS):
+          <span class="font-semibold text-slate-900">your traffic
+          metadata, device inventory, and telemetry continuously stream
+          to a third-party cloud</span> — usually a US-based hyperscaler.
+          That's a non-starter for a lot of customers we talk to.
+          Perspectiv is the answer for them.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Product showcase ───────────────────────────────────────────── -->
   <section class="bg-slate-900 py-20 sm:py-24">
     <div class="container-wide">
