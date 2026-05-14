@@ -47,7 +47,27 @@
     // Other valid values:
     //   "single-page-application"  — for SPA routing (always serve index.html)
     //   "none"                     — return Cloudflare default 404 page
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+
+    // URL canonicalization — drop trailing slashes from HTML paths.
+    // Pre-fix this was the implicit "auto-trailing-slash" default,
+    // which added a slash (/contact → 307 /contact/), creating the
+    // duplicate URL surface that Google Search Console reported as
+    // "Page with redirect" + "Alternate page with proper canonical
+    // tag". With "drop-trailing-slash" the Worker:
+    //   - Serves /contact.html at /contact
+    //   - 301-redirects /contact/ to /contact (no slash form is canonical)
+    //   - 301-redirects /contact.html to /contact
+    // This pairs with astro.config.mjs trailingSlash: 'never' (which
+    // controls how Astro generates link hrefs at build time) and the
+    // BaseLayout canonical tag (which encodes the canonical URL for
+    // Google) — all three layers now agree on the same policy.
+    //
+    // Cross-host canonicalization (www → apex) is NOT handled here —
+    // Workers Static Assets only supports relative URLs in _redirects
+    // and html_handling is path-only. That redirect lives at the
+    // Cloudflare zone level as a Redirect Rule.
+    "html_handling": "drop-trailing-slash"
   },
 
   // Non-secret environment variables. The Resend API key is set
