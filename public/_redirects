@@ -1,0 +1,32 @@
+# Cloudflare Pages redirect rules — copied verbatim from public/ to
+# dist/ at build time, then served by Cloudflare Pages. Syntax is
+# Netlify-compatible:
+#   from to [status] [!]
+# where `*` is a wildcard, `:splat` references the matched portion,
+# and `!` forces the redirect even when a matching file exists.
+#
+# Why these rules exist:
+#   - Pre-fix the site had four URL forms per page (www vs apex,
+#     trailing slash vs not). Google Search Console deduplicated them
+#     via canonical tags but the report was noisy and the canonical
+#     itself reflected the request URL, sometimes producing circular
+#     refs. astro.config.mjs is now set to trailingSlash: 'never' so
+#     builds emit `dist/contact.html` (no slash) instead of
+#     `dist/contact/index.html` (slash). These redirects clean up
+#     the old surface so previously-indexed trailing-slash URLs and
+#     www-prefixed URLs collapse to the canonical apex+no-slash form.
+#
+# Domain canonicalization — www → apex
+# Cloudflare Pages serves both www.perspectiv.net and perspectiv.net
+# from the same project. We pick apex as the canonical host.
+https://www.perspectiv.net/*  https://perspectiv.net/:splat  301
+
+# Trailing-slash strip for the routes Google previously indexed at
+# the with-slash form. Listed explicitly rather than via a wildcard
+# so the rule set stays readable and routes that legitimately want
+# a trailing slash (none currently) can opt out.
+/about/      /about      301
+/charter/    /charter    301
+/contact/    /contact    301
+/download/   /download   301
+/pricing/    /pricing    301

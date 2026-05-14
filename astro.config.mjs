@@ -14,6 +14,16 @@ import tailwind from '@astrojs/tailwind';
 // surfaced via robots.txt → manual sitemap.xml).
 export default defineConfig({
   site: 'https://perspectiv.net',
+  // Force trailing-slash policy at build time so URLs canonicalize
+  // consistently. With 'never' Astro generates `dist/contact.html`
+  // (served at /contact) instead of `dist/contact/index.html` (served
+  // at /contact/). Eliminates the duplicate-URL surface that Google
+  // Search Console flagged as "Alternate page with proper canonical
+  // tag" — the two-form variants exist because the prior default
+  // 'ignore' setting let Cloudflare serve both /contact and
+  // /contact/ from the same file. _redirects file handles the
+  // already-published trailing-slash inbound links.
+  trailingSlash: 'never',
   integrations: [
     tailwind({
       // Apply Tailwind to all .astro files; use src/styles/global.css

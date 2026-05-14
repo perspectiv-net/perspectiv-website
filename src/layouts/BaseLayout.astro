@@ -26,10 +26,28 @@ const {
   title,
   description,
   ogImage = '/og-image.png',
-  canonical = Astro.url.href,
+  canonical: canonicalOverride,
   noindex = false,
   structuredData,
 } = Astro.props;
+
+// Canonical URL — always derive from the configured `site` origin
+// (https://perspectiv.net) and the current path. Pre-fix this used
+// Astro.url.href which reflected whatever URL the request came in on
+// (www vs apex, http vs https, trailing slash vs not), so the same
+// page emitted four different canonical tags depending on inbound URL
+// form. Google Search Console reported this as a duplicate-canonical
+// problem and refused to index some variants. Now every page emits the
+// same canonical regardless of how it was reached. Strips trailing
+// slash on non-root paths so /contact canonicalizes to /contact, not
+// /contact/.
+//
+// Page authors can still pass an explicit canonical via the `canonical`
+// prop (for redirect targets, alias pages, etc.); that override wins.
+const canonical = canonicalOverride ?? (() => {
+  const u = new URL(Astro.url.pathname, Astro.site).href;
+  return Astro.url.pathname === '/' ? u : u.replace(/\/$/, '');
+})();
 
 // Title format: "{Page} — Perspectiv" except on the homepage
 const pageTitle = title === 'Perspectiv' ? title : `${title} — Perspectiv`;
