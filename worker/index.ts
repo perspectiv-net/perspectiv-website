@@ -59,6 +59,28 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
+    // ── www → apex canonicalization ────────────────────────────────────
+    // Cloudflare's Worker route for www.perspectiv.net intercepts the
+    // request before Page Rules / Redirect Rules / Bulk Redirects can
+    // fire, so the cross-host redirect has to live in the Worker
+    // itself. Page Rules at the zone level are inert for www traffic
+    // because the Worker grabs every request first.
+    //
+    // 301 (Permanent) — apex is the only canonical host going forward;
+    // there's no expectation that we'll ever swap which is preferred.
+    // Preserves path, query string, and fragment because they're all
+    // properties of the URL object we're rewriting.
+    //
+    // Google Search Console reported the www variants as duplicate
+    // content under "Page with redirect" / "Alternate page with proper
+    // canonical tag". After this redirect is live, the www form
+    // permanently consolidates to apex and those GSC entries clear on
+    // the next crawl cycle.
+    if (url.hostname === 'www.perspectiv.net') {
+      url.hostname = 'perspectiv.net';
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === '/api/contact' && request.method === 'POST') {
       return handleContact(request, env);
     }
