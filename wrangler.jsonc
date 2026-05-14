@@ -39,6 +39,26 @@
     // binding, the Worker has no way to serve the static site.
     "binding": "ASSETS",
 
+    // Force the Worker fetch handler to run on EVERY request, even those
+    // that match a static asset path. Default is false, which means
+    // Cloudflare serves matched static assets directly from edge cache
+    // WITHOUT invoking the Worker. That default broke our www → apex
+    // redirect: requests to www.perspectiv.net/contact matched the
+    // static contact.html, got served from cache, and never reached
+    // the Worker's hostname-check at the top of fetch(). Unique URLs
+    // like /__diag-<uuid> DID trigger the Worker (no asset match),
+    // which is what made the bug confusing — Worker logic was correct,
+    // just being skipped on the URLs Google had indexed.
+    //
+    // With run_worker_first: true the Worker fires for every request.
+    // Perf cost is negligible — the Worker's hot path is now:
+    //   1. Build URL object (cheap)
+    //   2. Hostname check + early return if www (one string compare)
+    //   3. Otherwise fall through to env.ASSETS.fetch(), which still
+    //      uses the same asset cache underneath
+    // Net add per request: a few microseconds of CPU time on the edge.
+    "run_worker_first": true,
+
     // When a request matches no file in dist/, return /404.html with
     // a 404 status. Astro generates a 404 page automatically when
     // src/pages/404.astro exists. We don't have one yet — Cloudflare
